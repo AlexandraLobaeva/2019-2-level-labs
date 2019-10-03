@@ -3,13 +3,13 @@ Labour work #1
 Count frequencies dictionary by the given arbitrary text
 """
 def calculate_frequences(text):
-    text = str(text)
-    if text == '' or text is None:
+    if text == '' or text is None or '' in text:
         return {}
+    text = str(text)
     text = text.lower()
     splitting = text.split(' ')
     result = []
-    prohibited_marks = ['-', '.', ',', "'", '$', ')', '(', '%', ':', '', '*', '~', '\n\n', '^', '"']
+    prohibited_marks = ['@', '\n', '&', "-", ".", ',', "'", '$', ')', '(', '%', ':', '', '*', '~', '\n\n', '^', '"']
     for word in splitting:
         if not word.isdigit() and word not in prohibited_marks:
             clear_txt = ''
