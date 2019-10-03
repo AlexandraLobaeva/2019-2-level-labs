@@ -2,7 +2,7 @@
 Labour work #1
 Count frequencies dictionary by the given arbitrary text
 """
-def calculate_frequencies(text):
+def calculate_frequences(text):
     text = str(text)
     if text == '' or text is None:
         return {}
