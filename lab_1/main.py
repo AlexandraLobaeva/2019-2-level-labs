@@ -3,9 +3,9 @@ Labour work #1
 Count frequencies dictionary by the given arbitrary text
 """
 def calculate_frequences(text):
-    if text == '' or text is None or '' in text:
-        return {}
     text = str(text)
+    if text == '' or text is None:
+        return {}
     text = text.lower()
     splitting = text.split(' ')
     result = []
