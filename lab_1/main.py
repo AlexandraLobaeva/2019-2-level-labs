@@ -16,7 +16,7 @@ def calculate_frequences(text):
             for i in word:
                 if i not in prohibited_marks:
                     clear_txt += i
-            if clear_txt is not ' ':
+            if clear_txt is not '':
                 result.append(clear_txt)
     text_dict = {}
     for word in result:
