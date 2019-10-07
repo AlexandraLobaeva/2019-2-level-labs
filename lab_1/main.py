@@ -25,7 +25,6 @@ def calculate_frequences(text):
         elif word in text_dict:
             text_dict[word] += 1
     return text_dict
-    pass
 
 
 def filter_stop_words(frequencies, stop_words):
@@ -41,7 +40,6 @@ def filter_stop_words(frequencies, stop_words):
             if k == i:
                 del this_dict_copy[k]
     return this_dict_copy
-    pass
 
 
 def get_top_n(frequencies, top_n):
@@ -56,4 +54,12 @@ def get_top_n(frequencies, top_n):
     if top_n < 0:
         return ()
     return tuple_key
-    pass
+
+
+frequencies = {'a' : 10}
+def get_freq(frequencies, word):
+    if word in frequencies:
+        return frequencies.get(word)
+    else:
+        return 0
+print (get_freq(frequencies, 'a'))
