@@ -47,7 +47,7 @@ class TfIdfCalculator:
                     doc_len = len(text)
                     for word in text:
                         count_prob = 1
-                        if not isinstance(word, str):
+                        if isinstance(word, str):
                             if word not in tf_values:
                                 tf_values[word] = count_prob / doc_len
                             else:
@@ -87,21 +87,16 @@ class TfIdfCalculator:
     def report_on(self, word, document_index):
         if not self.tf_idf_values or document_index >= len(self.tf_idf_values):
             return ()
-        tf_idf_dict = self.tf_idf_values[document_index]
-        tf_idf_sort_list = sorted(tf_idf_dict, key=tf_idf_dict.__getitem__, reverse=True)
-        return tf_idf_dict.get(word), tf_idf_sort_list.index(word)
+        tf_idf_dict = self.tf_idf_values[document_index][word]
+        tf_idf_sort_list = sorted(self.tf_idf_values[document_index], key=lambda x: self.tf_idf_values[document_index][x], reverse=True)
+        return tf_idf_dict, tf_idf_sort_list.index(word)
 
 
-if __name__ == '__main__':
-    texts = ['5_7.txt', '15_2.txt', '10547_3.txt', '12230_7.txt']
-    for text in texts:
-        with open(text, 'r') as f:
-            REFERENCE_TEXTS.append(f.read())
-    # scenario to check your work
-    test_texts = clean_tokenize_corpus(REFERENCE_TEXTS)
-    tf_idf = TfIdfCalculator(test_texts)
-    tf_idf.calculate_tf()
-    tf_idf.calculate_idf()
-    tf_idf.calculate()
-    print(tf_idf.report_on('good', 0))
-    print(tf_idf.report_on('and', 1))
+# scenario to check your work
+test_texts = clean_tokenize_corpus(REFERENCE_TEXTS)
+tf_idf = TfIdfCalculator(test_texts)
+tf_idf.calculate_tf()
+tf_idf.calculate_idf()
+tf_idf.calculate()
+print(tf_idf.report_on('good', 0))
+print(tf_idf.report_on('and', 1))
