@@ -40,13 +40,18 @@ class TfIdfCalculator:
         self.file_names = ['5_7.txt', '15_2.txt', '10547_3.txt', '12230_7.txt']
 
     def calculate_tf(self):
-        if self.corpus is not None:
+                if self.corpus is not None:
+            doc_len = 0
             for text in self.corpus:
                 if text is not None and isinstance(text, list):
                     tf_values = {}
-                    doc_len = len(text)
+                    if text:
+                        doc_len = len(text)
                     for word in text:
+                        if not isinstance(word, str):
+                            doc_len -= 1
                         count_prob = 1
+                    for word in text:
                         if isinstance(word, str):
                             if word not in tf_values:
                                 tf_values[word] = count_prob / doc_len
